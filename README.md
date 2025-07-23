@@ -17,8 +17,8 @@ This is a simple web app built using **Python**, **Flask**, and **Scikit-learn**
 ### 2. Download the Project
 - Clone using Git:
   ```bash
-  git clone https://github.com/yourusername/your-repo-name.git
-  cd your-repo-name
+  git clone https://github.com/gaisimthang/EmployeeSalaryPredictionVotingRegressor.git
+  cd EmployeeSalaryPredictionVotingRegressor
   
 ### 3. Install Dependencies
 Inside the project folder, run:
