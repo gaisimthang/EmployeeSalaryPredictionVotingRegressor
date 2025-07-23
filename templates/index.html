@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Salary Predictor</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px 35px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            max-width: 520px;
+            width: 95%;
+            text-align: center;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+            max-width: 100px;
+            object-fit: contain;
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 6px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+
+        h2 {
+            font-size: 28px;
+            color: #262626;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            color: #555;
+            font-weight: normal;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            font-weight: 600;
+            margin: 12px 0 5px;
+            color: #333;
+            font-size: 14px;
+        }
+
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            margin-bottom: 18px;
+            font-size: 14px;
+            background-color: #fafafa;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: border 0.3s;
+        }
+
+        input[type="number"]:focus,
+        select:focus {
+            border-color: #d62976;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background: linear-gradient(90deg, #feda75, #fa7e1e, #d62976, #962fbf);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s;
+        }
+
+        input[type="submit"]:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .result {
+            margin-top: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c2c2c;
+            background-color: #f2f2f2;
+            padding: 14px;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='img/logo3.jpeg') }}" alt="Logo 1">
+            <img src="{{ url_for('static', filename='img/logo2.jpeg') }}" alt="Logo 2">
+            <img src="{{ url_for('static', filename='img/logo1.jpeg') }}" alt="Logo 3">
+        </div>
+
+
+        <h2>Employee Salary Prediction</h2>
+        <h4>Using Voting Regressor</h4>
+
+        <form method="POST" action="/predict">
+            <label for="age">Age (22–52):</label>
+            <input type="number" name="age" min="22" max="52" required>
+
+            <label for="experience">Years of Experience (0–25):</label>
+            <input type="number" name="experience" min="0" max="25" step="0.1" required>
+
+            <label for="gender">Gender:</label>
+            <select name="gender" required>
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+            </select>
+
+            <label for="degree">Degree:</label>
+            <select name="degree" required>
+                <option value="High School">High School</option>
+                <option value="Bachelor's">Bachelor's</option>
+                <option value="Master's">Master's</option>
+                <option value="PhD">PhD</option>
+            </select>
+
+            <label for="job_title">Job Title:</label>
+            <select name="job_title" required>
+                {% for title in job_titles %}
+                <option value="{{ title }}">{{ title }}</option>
+                {% endfor %}
+            </select>
+
+            <input type="submit" value="🔮 Predict Salary">
+        </form>
+
+        {% if prediction_text %}
+        <div class="result">{{ prediction_text }}</div>
+        {% endif %}
+    </div>
+</body>
+
+</html>
