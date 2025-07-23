@@ -22,8 +22,10 @@ This is a simple web app built using **Python**, **Flask**, and **Scikit-learn**
   
 ### 3. Install Dependencies
 Inside the project folder, run:
+```bash
 pip install flask scikit-learn
 pip install -r requirements.txt
+```
 
 ### 4. Run the App
 In the project root directory, start the app with:
