@@ -1,17 +1,17 @@
-# 💼 Salary Prediction Web App
+#  Salary Prediction Web App
 
 This is a simple web app built using **Python**, **Flask**, and **Scikit-learn** to predict employee salaries based on input features.
 
-## 📦 Requirements
+##  Requirements
 
 - Python 3.7 or above
 - pip (Python package installer)
 
-## 🛠️ Setup Instructions
+##  Setup Instructions
 
 ### 1. Install Python
 - Download from: https://www.python.org/downloads/
-- During installation, check ✅ **"Add Python to PATH"**
+- During installation, check **"Add Python to PATH"**
 - Verify with: `python --version`
 
 ### 2. Download the Project
